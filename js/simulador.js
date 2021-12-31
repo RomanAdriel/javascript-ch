@@ -50,7 +50,7 @@ function promedioTPs(totalNotasTP) {
 
 function calcularAprobacion(alumno, aplazosTP, promedioTP, notaPrimerPracial, notaSegundoParcial, notaExamenFinal, porcentajeAsistencias) {
 
-    if ((aplazosTP > 1) || (!porcentajeAsistencias)) {
+    if ((aplazosTP > 1) || (!porcentajeAsistencias) || (notaPrimerPracial < 4) || (notaSegundoParcial < 4) || (notaExamenFinal < 4)) {
         alert('El alumno ' + alumno + ' ha desaprobado la cursada.');
     } else {
 
