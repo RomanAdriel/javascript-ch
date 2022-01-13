@@ -12,6 +12,8 @@ function Alumno () {
     this.presentismo = false;
 }
 
+// Funciones principales de carga de datos
+
 function pedirNombre() {
     let nombreAlumno = prompt("Bienvenido. Ingrese el nombre del alumno: ");
     let apellidoAlumno = prompt("Ingrese el apellido del alumno: ");
@@ -155,6 +157,8 @@ function ordenarAlumnos(alumnos, criterio, ord) {
     }
 }
 
+// Ordenar Alumnos
+
 function mostrarAlumnosOrdenados(alumnos) {
 
     console.log(Object.keys(alumnos[0]).join(" | "));
@@ -173,6 +177,8 @@ let continuar = "s";
 let listaAlumnos = [];
 let criterioOrd = 0;
 let orden = 0;
+
+// Se pide ingreso de alumnos hasta que el usuario decida detener el ingreso con "s"
 
 while (continuar == "s") {
 
@@ -208,8 +214,13 @@ while (continuar == "s") {
 }
 
 
+// Se ofrece ordenar la lista de alumnos
+
 let mostrarListado = prompt("Desea visualizar el listado final de alumnos? (S/N): ").toLowerCase();
 let alumnosOrdenados = [];
+
+
+// Se ofrecen las formas de ordenamiento y se ordena en consola, hasta que el usuario ya no quiere continuar
 
 while (mostrarListado == "s") {
 
