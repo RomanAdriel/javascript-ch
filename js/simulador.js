@@ -161,13 +161,17 @@ function ordenarAlumnos(alumnos, criterio, ord) {
 
 function mostrarAlumnosOrdenados(alumnos) {
 
+    let lista = document.getElementById("alumnosLista");
+
     console.log(Object.keys(alumnos[0]).join(" | "));
+    for (const alumno of alumnos)  {
+      let li = document.createElement("li");
+      li.innerHTML = Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")";
+      lista.appendChild(li);
 
-    for (const alumno of alumnos) {
+      console.log(Object.values(alumno).join(" | "));
 
-        console.log(Object.values(alumno).join(" | "));
-
-        }
+      }
 }
 
 // main
@@ -184,29 +188,18 @@ while (continuar == "s") {
 
     let alumno = new Alumno();
 
-    console.log(alumno);
-
     [alumno.nombre, alumno.apellido] = pedirNombre();
-    console.log(alumno);
     alumno.notasTP = pedirNotasTPs(alumno);
-    console.log(alumno);
     alumno.asistencias = pedirAsistencias();
-    console.log(alumno);
     alumno.promedioTP = promedioTPs(alumno.notasTP);
-    console.log(alumno);
 
     alumno.notaPrimerParcial = parseFloat(prompt("Ingrese la nota del primer parcial: "));
-    console.log(alumno);
     alumno.notaSegundoParcial = parseFloat(prompt("Ingrese nota del segundo parcial: "));
-    console.log(alumno);
     alumno.notaExamenFinal = parseFloat(prompt("Ingrese nota del examen final: "));
-    console.log(alumno);
 
     alumno.presentismo = aprobacionAsistencias(cantClases, alumno);
-    console.log(alumno);
 
     calcularAprobacion(alumno);
-    console.log(alumno);
     listaAlumnos.push(alumno);
 
     continuar = prompt("Desea calcular los datos de otro alumno? (S/N): ").toLowerCase();
