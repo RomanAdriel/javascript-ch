@@ -12,6 +12,14 @@ function Alumno () {
     this.presentismo = false;
 }
 
+// Eventos
+
+function borrarListaAlumnos() {
+  let lista = document.getElementById("alumnosLista");
+  lista.innerHTML = "";
+
+}
+
 // Funciones principales de carga de datos
 
 function pedirNombre() {
@@ -181,6 +189,11 @@ let continuar = "s";
 let listaAlumnos = [];
 let criterioOrd = 0;
 let orden = 0;
+document.body.addEventListener("keyup", function(event) {
+  if(event.keyCode === 13) {
+    document.getElementById("borrar-lista").click();  
+  }
+})
 
 // Se pide ingreso de alumnos hasta que el usuario decida detener el ingreso con "s"
 
