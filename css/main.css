@@ -1,0 +1,111 @@
+/*Estilos generales de botones e inputs*/
+button {
+    font-weight: 600;
+    font-family: "Poppins";
+    margin: auto;
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: aliceblue;
+    display: flex;
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #90d6a2;
+    color: #53585c;
+}
+
+input {
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 0.5rem;
+}
+
+input :focus::placeholder {
+    color: transparent;
+}
+
+/*Estilos generales de los textos*/
+h1 {
+    font-weight: 600;
+    font-family: "Poppins";
+    color: #0e1011;
+    text-align: center;
+    background-color: rgba(229, 235, 229, 0.37);
+    margin-top: 5%;
+    font-size: 2rem;
+    padding: 5px;
+}
+
+h2 {
+    font-weight: 600;
+    font-family: "Poppins";
+    color: rgba(93, 88, 150, 0.61);
+    font-size: 1.7rem;
+    border-bottom: 2px solid black;
+    padding-bottom: 12px;
+    padding: 5px;
+    margin: 20px 5px 10px 10px;
+    text-align: center;
+}
+
+h3 {
+    font-weight: 600;
+    font-family: "Poppins";
+    color: rgba(93, 88, 150, 0.61);
+    font-size: 1.5rem;
+    padding: 5px;
+    border-bottom: 3px solid black;
+}
+
+p,
+.center-p {
+    font-weight: 600;
+    font-family: "Poppins";
+    color: #312b2b;
+    word-spacing: 2px;
+    font-size: 1.3rem;
+    padding: 5px;
+    margin: 10px 5px 10px 15px;
+}
+
+.center-p {
+    text-align: center;
+}
+
+section {
+    padding: 25px;
+}
+
+
+/*Estilos del form de contacto*/
+fieldset {
+    padding: 10px 10px 10px 10px;
+    width: 33%;
+}
+
+form {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding: 10px;
+}
+
+textarea {
+    margin-top: 10px;
+}
+
+textarea :focus::placeholder {
+    color: transparent;
+}
+
+.contacto {
+    margin-left: 15px;
+}
+
+.contacto_buttons {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}

@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet"/>
 </head>
+
 <body>
     <main>
         <h1>Simulador de Resultados Finales de Cursada</h1>
@@ -24,12 +31,86 @@
         </ul>
     </main>
     <section>
+        <div class="container">
+            <form action="" id="form-alumno" class="container">
+                <fieldset class="form-group">
+                    <legend>Datos Personales del Alumno</legend>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre-alumno" class="form-control contacto__labels"
+                        placeholder="Ingresá el nombre del alumno..." name="nombre" />
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido-alumno" class="form-control contacto__labels"
+                        placeholder="Ingresá el apellido del alumno..." name="apellido" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <legend>Notas de TPs</legend>
+                    <label for="tp1">Nota TP1</label>
+                    <input type="text" id="nota-tp1" class="form-control contacto__labels" name="tp1" />
+                    <label for="tp2">Nota TP2</label>
+                    <input type="text" id="nota-tp2" class="form-control contacto__labels" name="tp2" />
+                    <label for="tp3">Nota TP3</label>
+                    <input type="text" id="nota-tp3" class="form-control contacto__labels" name="tp3" />
+                    <label for="tp4">Nota TP4</label>
+                    <input type="text" id="nota-tp4" class="form-control contacto__labels" name="tp4" />
+                    <label for="tp5">Nota TP5</label>
+                    <input type="text" id="nota-tp5" class="form-control contacto__labels" name="tp5" />
+                    <label for="aplazos">Aplazos</label>
+                    <input type="text" id="aplazos-alumno" class="form-control contacto__labels" name="aplazos" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <legend>Notas de Exámenes</legend>
+                    <label for="primer-parcial">Nota Primer Parcial</label>
+                    <input type="text" id="nota-primer-parcial-alumno" class="form-control contacto__labels"
+                        name="primer-parcial" />
+                    <label for="segundo-parcial">Nota Segundo Parcial</label>
+                    <input type="text" id="nota-segundo-parcial-alumno" class="form-control contacto__labels"
+                        name="segundo-parcial" />
+                    <label for="examen-final">Nota Examen Final</label>
+                    <input type="text" id="nota-examen-final-alumno" class="form-control contacto__labels"
+                        name="examen-final" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <legend>Asistencias</legend>
+                    <label for="asistencias">Asistencias</label>
+                    <input type="text" id="asistencias-alumno" class="form-control contacto__labels"
+                        name="asistencias" />
+                </fieldset>
+                <div>
+                    <input type="submit" id="enviar-alumno" class="btn btn-dark contacto_buttons"
+                        value="Enviar formulario" />
+                    <input type="reset" class="btn btn-dark contacto_buttons" value="Limpiar formulario" />
+                </div>
+            </form>
+        </div>
+    </section>
+    <section>
+        <div class="container" id="resultado-alumno"></div>
+
+    </section>
+    <section>
+        <div>
+            <button id="nombre-asc">Ordenar por Nombre (Asc)</button>
+            <button id="nombre-desc">Ordenar por Nombre (Desc)</button>
+            <button id="apellido-asc">Ordenar por Apellido (Asc)</button>
+            <button id="apellido-desc">Ordenar por Apellido (Desc)</button>
+            <button id="nota-asc">Ordenar por Nota (Asc)</button>
+            <button id="nota-desc">Ordenar por Nota (Desc)</button>
+        </div>
+    </section>
+    <section>
         <h1>Listado de alumnos</h1>
         <ul id="alumnosLista">
-            
+
         </ul>
     </section>
     <button id="borrar-lista" onclick="borrarListaAlumnos()">Borrar Listado</button>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+    </script>
+    <script src="js/simulador.js"></script>
 </body>
-<script src="js/simulador.js"></script>
+
 </html>
