@@ -1,15 +1,15 @@
-function Alumno () {
-    this.nombre = "";
-    this.apellido = "";
-    this.notasTP = 0;
-    this.aplazosTP = 0;
-    this.asistencias = 0;
-    this.notaPrimerParcial = 0;
-    this.notaSegundoParcial = 0;
-    this.notaExamenFinal = 0;
-    this.notaFinal = 0;
-    this.promedioTP = 0;
-    this.presentismo = false;
+function Alumno() {
+  this.nombre = "";
+  this.apellido = "";
+  this.notasTP = 0;
+  this.aplazosTP = 0;
+  this.asistencias = 0;
+  this.notaPrimerParcial = 0;
+  this.notaSegundoParcial = 0;
+  this.notaExamenFinal = 0;
+  this.notaFinal = 0;
+  this.promedioTP = 0;
+  this.presentismo = false;
 }
 
 // Eventos
@@ -22,223 +22,194 @@ function borrarListaAlumnos() {
 
 // Funciones principales de carga de datos
 
-function pedirNombre() {
-    let nombreAlumno = prompt("Bienvenido. Ingrese el nombre del alumno: ");
-    let apellidoAlumno = prompt("Ingrese el apellido del alumno: ");
-    
-    return [nombreAlumno, apellidoAlumno];
-  }
-
-function pedirAsistencias() {
-
-    let clasesAlumno = parseInt(prompt("Ingrese la cantidad de clases presenciadas por el alumno: "));
-
-    return clasesAlumno;
-
-}
-
-function pedirNotasTPs(alumno) {
-
-    let totalNotas = 0;
-    let nota = 0;
-
-    for(let i=1; i < 6; i++) {
-        nota = parseFloat(prompt("Ingrese la nota del TP N°" + i + ":"));
-        totalNotas = totalNotas + nota;
-        if (nota <= 3) {
-            alumno.aplazosTP++;
-        }
-    }
-
-    return totalNotas;
-        
-}
-  
 function aprobacionAsistencias(totalClases, alumno) {
 
-    let aprobadoAsistencias = true;
+  let aprobadoAsistencias = true;
 
-    if (alumno.asistencias < (totalClases * 0.85)) {
+  if (alumno.asistencias < (totalClases * 0.85)) {
 
-        aprobadoAsistencias = false;
-    }
+    aprobadoAsistencias = false;
+  }
 
-    return aprobadoAsistencias;
+  return aprobadoAsistencias;
 
-    }
+}
 
 function promedioTPs(totalNotasTP) {
 
-    return totalNotasTP	 / 5;
+  return totalNotasTP / 5;
 }
 
 function calcularAprobacion(alumno) {
 
-    alumno.notaFinal = (alumno.promedioTP + alumno.notaPrimerParcial + alumno.notaSegundoParcial + alumno.notaExamenFinal) / 4;
+  let divAlumno = document.getElementById("resultado-alumno");
 
-    if ((alumno.aplazosTP > 1) || (!alumno.presentismo) || (alumno.notaPrimerParcial < 4) || (alumno.notaSegundoParcial < 4) || (alumno.notaExamenFinal < 4)) {
-        alert('El alumno ' + alumno.nombre + " " + alumno.apellido + ' ha desaprobado la cursada.');
-    } else {
+  alumno.notaFinal = (alumno.promedioTP + alumno.notaPrimerParcial + alumno.notaSegundoParcial + alumno.notaExamenFinal) / 4;
 
-        alert('El alumno ' + alumno.nombre + " " + alumno.apellido + ' ha aprobado la cursada con un promedio de ' + alumno.notaFinal);
-    }
+  if ((alumno.aplazosTP > 1) || (!alumno.presentismo) || (alumno.notaPrimerParcial < 4) || (alumno.notaSegundoParcial < 4) || (alumno.notaExamenFinal < 4)) {
+    divAlumno.innerHTML = "El alumno " + alumno.nombre + " " + alumno.apellido + " ha desaprobado la cursada";
+  } else {
+
+    divAlumno.innerHTML = "El alumno " + alumno.nombre + " " + alumno.apellido + " ha aprobado la cursada con un promedio de " + alumno.notaFinal;
+  }
 }
 
 // Funciones de comparación para ordenamiento
 
 function compararNombreAsc(a, b) {
-    if (a.nombre < b.nombre ){
-      return -1;
-    }
-    if (a.nombre > b.nombre){
-      return 1;
-    }
-    return 0;
+  if (a.nombre < b.nombre) {
+    return -1;
   }
+  if (a.nombre > b.nombre) {
+    return 1;
+  }
+  return 0;
+}
 
-  function compararNombreDesc(a, b) {
-    if (a.nombre < b.nombre){
-      return 1;
-    }
-    if (a.nombre > b.nombre){
-      return -1;
-    }
-    return 0;
+function compararNombreDesc(a, b) {
+  if (a.nombre < b.nombre) {
+    return 1;
   }
+  if (a.nombre > b.nombre) {
+    return -1;
+  }
+  return 0;
+}
 
-  function compararApellidoAsc(a, b) {
-    if (a.apellido < b.apellido ){
-      return -1;
-    }
-    if (a.apellido > b.apellido){
-      return 1;
-    }
-    return 0;
+function compararApellidoAsc(a, b) {
+  if (a.apellido < b.apellido) {
+    return -1;
   }
+  if (a.apellido > b.apellido) {
+    return 1;
+  }
+  return 0;
+}
 
-  function compararApellidoDesc(a, b) {
-    if (a.apellido < b.apellido){
-      return 1;
-    }
-    if (a.apellido > b.apellido){
-      return -1;
-    }
-    return 0;
+function compararApellidoDesc(a, b) {
+  if (a.apellido < b.apellido) {
+    return 1;
   }
+  if (a.apellido > b.apellido) {
+    return -1;
+  }
+  return 0;
+}
 
-  function compararNotaAsc(a, b) {
-    return a.notaFinal - b.notaFinal;
-  }
+function compararNotaAsc(a, b) {
+  return a.notaFinal - b.notaFinal;
+}
 
-  function compararNotaDesc(a, b) {
-    return b.notaFinal - a.notaFinal;
-  }
+function compararNotaDesc(a, b) {
+  return b.notaFinal - a.notaFinal;
+}
 
 
 function ordenarAlumnos(alumnos, criterio, ord) {
 
-    if (criterio == 1) {
-        if (ord == 1) {
-            alumnos.sort(compararNombreAsc);
+  let alumnosOrdenados = [];
+  alumnosOrdenados = alumnos.map(elemento => elemento);
 
-        } else {
-            alumnos.sort(compararNombreDesc);
+  if (criterio == 1) {
+    if (ord == 1) {
+      alumnosOrdenados.sort(compararNombreAsc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
 
-        }
-    } else if (criterio == 2) {
-        if (ord == 1) {
-            alumnos.sort(compararApellidoAsc);
-
-        } else {
-            alumnos.sort(compararApellidoDesc);
-
-        }
-     } else {
-        if (ord == 1) {
-            alumnos.sort(compararNotaAsc);
-
-        } else {
-            alumnos.sort(compararNotaDesc);
-
-        }
+    } else {
+      alumnosOrdenados.sort(compararNombreDesc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
 
     }
+  } else if (criterio == 2) {
+    if (ord == 1) {
+      alumnosOrdenados.sort(compararApellidoAsc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
+
+    } else {
+      alumnosOrdenados.sort(compararApellidoDesc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
+
+    }
+  } else {
+    if (ord == 1) {
+      alumnosOrdenados.sort(compararNotaAsc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
+
+    } else {
+      alumnosOrdenados.sort(compararNotaDesc);
+      mostrarAlumnosOrdenados(alumnosOrdenados)
+
+    }
+
+  }
 }
 
 // Ordenar Alumnos
 
 function mostrarAlumnosOrdenados(alumnos) {
 
-    let lista = document.getElementById("alumnosLista");
+  let lista = document.getElementById("alumnosLista");
+  lista.innerHTML = "";
 
-    console.log(Object.keys(alumnos[0]).join(" | "));
-    for (const alumno of alumnos)  {
-      let li = document.createElement("li");
-      li.innerHTML = Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")";
-      lista.appendChild(li);
+  for (const alumno of alumnos) {
+    let li = document.createElement("li");
+    li.innerHTML = Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")";
+    lista.appendChild(li);
 
-      console.log(Object.values(alumno).join(" | "));
-
-      }
+  }
 }
 
 // main
 let cantClases = 25;
 let cantTPs = 5;
-let continuar = "s";
+let continuar = true;
 let listaAlumnos = [];
 let criterioOrd = 0;
 let orden = 0;
-document.body.addEventListener("keyup", function(event) {
-  if(event.keyCode === 13) {
-    document.getElementById("borrar-lista").click();  
+document.body.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    document.getElementById("borrar-lista").click();
   }
 })
 
-// Se pide ingreso de alumnos hasta que el usuario decida detener el ingreso con "s"
+// Carga de alumnos mediante lectura de formulario
 
-while (continuar == "s") {
+const formularioAlumno = document.getElementById("form-alumno");
+formularioAlumno.addEventListener("submit", function (event) {
+      event.preventDefault();
 
-    let alumno = new Alumno();
+      let alumno = new Alumno();
+  
+      alumno.nombre = document.getElementById("nombre-alumno").value;
+      alumno.apellido = document.getElementById("apellido-alumno").value;
+      alumno.notasTP = parseFloat(document.getElementById("nota-tp1").value) + parseFloat(document.getElementById("nota-tp2").value) + parseFloat(document.getElementById("nota-tp3").value) + parseFloat(document.getElementById("nota-tp4").value) + parseFloat(document.getElementById("nota-tp5").value);
+      alumno.aplazosTP = parseInt(document.getElementById("aplazos-alumno").value);
+      alumno.notaPrimerParcial = parseFloat(document.getElementById("nota-primer-parcial-alumno").value);
+      alumno.notaSegundoParcial = parseFloat(document.getElementById("nota-segundo-parcial-alumno").value);
+      alumno.notaExamenFinal = parseFloat(document.getElementById("nota-examen-final-alumno").value);
+      alumno.asistencias = parseInt(document.getElementById("asistencias-alumno").value);
 
-    [alumno.nombre, alumno.apellido] = pedirNombre();
-    alumno.notasTP = pedirNotasTPs(alumno);
-    alumno.asistencias = pedirAsistencias();
-    alumno.promedioTP = promedioTPs(alumno.notasTP);
+      alumno.promedioTP = promedioTPs(alumno.notasTP);
 
-    alumno.notaPrimerParcial = parseFloat(prompt("Ingrese la nota del primer parcial: "));
-    alumno.notaSegundoParcial = parseFloat(prompt("Ingrese nota del segundo parcial: "));
-    alumno.notaExamenFinal = parseFloat(prompt("Ingrese nota del examen final: "));
+      alumno.presentismo = aprobacionAsistencias(cantClases, alumno);
 
-    alumno.presentismo = aprobacionAsistencias(cantClases, alumno);
-
-    calcularAprobacion(alumno);
-    listaAlumnos.push(alumno);
-
-    continuar = prompt("Desea calcular los datos de otro alumno? (S/N): ").toLowerCase();
-
-}
-
-
-// Se ofrece ordenar la lista de alumnos
-
-let mostrarListado = prompt("Desea visualizar el listado final de alumnos? (S/N): ").toLowerCase();
-let alumnosOrdenados = [];
+      calcularAprobacion(alumno);
+      listaAlumnos.push(alumno);
+      localStorage.setItem("listaDeAlumnos", JSON.stringify(listaAlumnos));
+    });
 
 
-// Se ofrecen las formas de ordenamiento y se ordena en consola, hasta que el usuario ya no quiere continuar
+    // Listado de Alumnos
 
-while (mostrarListado == "s") {
-
-    criterioOrd = parseInt(prompt("Ingrese el criterio de ordenamiento:\n1 - Nombre\n2 - Apellido\n3 - Nota Final"));
-    orden = parseInt(prompt("Ingrese el tipo de ordenamiento:\n1 - Ascendente\n2 - Descendente"));
-
-    alumnosOrdenados = listaAlumnos.map(elemento => elemento);
-    
-    ordenarAlumnos(alumnosOrdenados, criterioOrd, orden);
-
-    mostrarAlumnosOrdenados(alumnosOrdenados);
-
-    mostrarListado = prompt("Desea reordenar el listado final de alumnos? (S/N): ").toLowerCase();
-
-}
+    botonNombreAsc = document.getElementById("nombre-asc");
+    botonNombreAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 1, 1);});
+    botonNombreDesc = document.getElementById("nombre-desc");
+    botonNombreDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 1, 2);});
+    botonApellidoAsc = document.getElementById("apellido-asc");
+    botonApellidoAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 2, 1);});
+    botonApellidoDesc = document.getElementById("apellido-desc");
+    botonApellidoDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 2, 2);});
+    botonNotaAsc = document.getElementById("nota-asc");
+    botonNotaAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 3, 1);});
+    botonNotaDesc = document.getElementById("nota-desc");
+    botonNotaDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 3, 2);});
