@@ -15,8 +15,7 @@ function Alumno() {
 // Eventos
 
 function borrarListaAlumnos() {
-  let lista = document.getElementById("alumnosLista");
-  lista.innerHTML = "";
+  $("#alumnosLista").empty();
 
 }
 
@@ -42,15 +41,16 @@ function promedioTPs(totalNotasTP) {
 
 function calcularAprobacion(alumno) {
 
-  let divAlumno = document.getElementById("resultado-alumno");
+  let divAlumno = $("#resultado-alumno");
+  divAlumno.empty();
 
   alumno.notaFinal = (alumno.promedioTP + alumno.notaPrimerParcial + alumno.notaSegundoParcial + alumno.notaExamenFinal) / 4;
 
   if ((alumno.aplazosTP > 1) || (!alumno.presentismo) || (alumno.notaPrimerParcial < 4) || (alumno.notaSegundoParcial < 4) || (alumno.notaExamenFinal < 4)) {
-    divAlumno.innerHTML = "El alumno " + alumno.nombre + " " + alumno.apellido + " ha desaprobado la cursada";
+    divAlumno.append("El alumno " + alumno.nombre + " " + alumno.apellido + " ha desaprobado la cursada");
   } else {
 
-    divAlumno.innerHTML = "El alumno " + alumno.nombre + " " + alumno.apellido + " ha aprobado la cursada con un promedio de " + alumno.notaFinal;
+    divAlumno.append("El alumno " + alumno.nombre + " " + alumno.apellido + " ha aprobado la cursada con un promedio de " + alumno.notaFinal);
   }
 }
 
@@ -148,14 +148,10 @@ function ordenarAlumnos(alumnos, criterio, ord) {
 
 function mostrarAlumnosOrdenados(alumnos) {
 
-  let lista = document.getElementById("alumnosLista");
-  lista.innerHTML = "";
+  let lista = $("#alumnosLista").empty();
 
   for (const alumno of alumnos) {
-    let li = document.createElement("li");
-    li.innerHTML = Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")";
-    lista.appendChild(li);
-
+    lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" +"</li>")
   }
 }
 
@@ -166,28 +162,28 @@ let continuar = true;
 let listaAlumnos = [];
 let criterioOrd = 0;
 let orden = 0;
-document.body.addEventListener("keyup", function (event) {
+
+$(document).ready().on('keyup', function (event) {
   if (event.keyCode === 13) {
-    document.getElementById("borrar-lista").click();
+    $('#enviar-alumno').click();
   }
 })
 
 // Carga de alumnos mediante lectura de formulario
 
-const formularioAlumno = document.getElementById("form-alumno");
-formularioAlumno.addEventListener("submit", function (event) {
+$("#form-alumno").on("submit", function (event) {
       event.preventDefault();
 
       let alumno = new Alumno();
   
-      alumno.nombre = document.getElementById("nombre-alumno").value;
-      alumno.apellido = document.getElementById("apellido-alumno").value;
-      alumno.notasTP = parseFloat(document.getElementById("nota-tp1").value) + parseFloat(document.getElementById("nota-tp2").value) + parseFloat(document.getElementById("nota-tp3").value) + parseFloat(document.getElementById("nota-tp4").value) + parseFloat(document.getElementById("nota-tp5").value);
-      alumno.aplazosTP = parseInt(document.getElementById("aplazos-alumno").value);
-      alumno.notaPrimerParcial = parseFloat(document.getElementById("nota-primer-parcial-alumno").value);
-      alumno.notaSegundoParcial = parseFloat(document.getElementById("nota-segundo-parcial-alumno").value);
-      alumno.notaExamenFinal = parseFloat(document.getElementById("nota-examen-final-alumno").value);
-      alumno.asistencias = parseInt(document.getElementById("asistencias-alumno").value);
+      alumno.nombre = $("#nombre-alumno").val();
+      alumno.apellido = $("#apellido-alumno").val();
+      alumno.notasTP = parseFloat($("#nota-tp1").val()) + parseFloat($("#nota-tp2").val()) + parseFloat($("#nota-tp3").val()) + parseFloat($("#nota-tp4").val()) + parseFloat($("#nota-tp5").val());
+      alumno.aplazosTP = parseInt($("#aplazos-alumno").val());
+      alumno.notaPrimerParcial = parseFloat($("#nota-primer-parcial-alumno").val());
+      alumno.notaSegundoParcial = parseFloat($("#nota-segundo-parcial-alumno").val());
+      alumno.notaExamenFinal = parseFloat($("#nota-examen-final-alumno").val());
+      alumno.asistencias = parseInt($("#asistencias-alumno").val());
 
       alumno.promedioTP = promedioTPs(alumno.notasTP);
 
@@ -201,15 +197,12 @@ formularioAlumno.addEventListener("submit", function (event) {
 
     // Listado de Alumnos
 
-    botonNombreAsc = document.getElementById("nombre-asc");
-    botonNombreAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 1, 1);});
-    botonNombreDesc = document.getElementById("nombre-desc");
-    botonNombreDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 1, 2);});
-    botonApellidoAsc = document.getElementById("apellido-asc");
-    botonApellidoAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 2, 1);});
-    botonApellidoDesc = document.getElementById("apellido-desc");
-    botonApellidoDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 2, 2);});
-    botonNotaAsc = document.getElementById("nota-asc");
-    botonNotaAsc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 3, 1);});
-    botonNotaDesc = document.getElementById("nota-desc");
-    botonNotaDesc.addEventListener("click", function() {ordenarAlumnos(listaAlumnos, 3, 2);});
+    $("#nombre-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 1);});
+    $("#nombre-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 2);});
+    $("#apellido-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 1);});
+    $("#apellido-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 2);});
+    $("#nota-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 1);});
+    $("#nota-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 2);});
+
+    // Borrar Listado
+    $("#borrar-lista").click(borrarListaAlumnos);
