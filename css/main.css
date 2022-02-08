@@ -109,3 +109,10 @@ textarea :focus::placeholder {
     margin-bottom: 5px;
     margin-top: 5px;
 }
+
+/* Resultados del Alumno */
+
+#resultado-alumno,
+#listaAlumno {
+    display: none;
+}

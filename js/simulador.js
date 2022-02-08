@@ -19,6 +19,12 @@ function borrarListaAlumnos() {
 
 }
 
+function scrollALista() {
+  $('html, body').animate({
+    scrollTop: $("#alumnosLista").offset().top
+  }, 500)
+}
+
 // Funciones principales de carga de datos
 
 function aprobacionAsistencias(totalClases, alumno) {
@@ -52,6 +58,11 @@ function calcularAprobacion(alumno) {
 
     divAlumno.append("El alumno " + alumno.nombre + " " + alumno.apellido + " ha aprobado la cursada con un promedio de " + alumno.notaFinal);
   }
+
+  divAlumno.fadeIn("slow", function () {
+    divAlumno.fadeOut(5000);
+
+  })  
 }
 
 // Funciones de comparación para ordenamiento
@@ -148,12 +159,14 @@ function ordenarAlumnos(alumnos, criterio, ord) {
 
 function mostrarAlumnosOrdenados(alumnos) {
 
-  let lista = $("#alumnosLista").empty();
+  let lista = $("#alumnosLista");
+  lista.empty();
 
   for (const alumno of alumnos) {
     lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" +"</li>")
   }
 }
+
 
 // main
 let cantClases = 25;
@@ -165,7 +178,7 @@ let orden = 0;
 
 $(document).ready().on('keyup', function (event) {
   if (event.keyCode === 13) {
-    $('#enviar-alumno').click();
+    $('#form-alumno').submit(event);
   }
 })
 
@@ -197,12 +210,12 @@ $("#form-alumno").on("submit", function (event) {
 
     // Listado de Alumnos
 
-    $("#nombre-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 1);});
-    $("#nombre-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 2);});
-    $("#apellido-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 1);});
-    $("#apellido-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 2);});
-    $("#nota-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 1);});
-    $("#nota-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 2);});
+    $("#nombre-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 1); scrollALista();});
+    $("#nombre-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 2); scrollALista();});
+    $("#apellido-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 1); scrollALista();});
+    $("#apellido-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 2); scrollALista();});
+    $("#nota-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 1); scrollALista();});
+    $("#nota-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 2); scrollALista();});
 
     // Borrar Listado
     $("#borrar-lista").click(borrarListaAlumnos);
