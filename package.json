@@ -1,0 +1,22 @@
+{
+  "name": "javascript-ch",
+  "version": "1.0.0",
+  "description": "Proyecto de Javascript para CH",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomanAdriel/javascript-ch.git"
+  },
+  "author": "Román Díaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomanAdriel/javascript-ch/issues"
+  },
+  "homepage": "https://github.com/RomanAdriel/javascript-ch#readme",
+  "devDependencies": {
+    "json-server": "^0.17.0"
+  }
+}

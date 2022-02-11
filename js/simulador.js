@@ -62,7 +62,7 @@ function calcularAprobacion(alumno) {
   divAlumno.fadeIn("slow", function () {
     divAlumno.fadeOut(5000);
 
-  })  
+  })
 }
 
 // Funciones de comparación para ordenamiento
@@ -163,7 +163,7 @@ function mostrarAlumnosOrdenados(alumnos) {
   lista.empty();
 
   for (const alumno of alumnos) {
-    lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" +"</li>")
+    lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" + "</li>")
   }
 }
 
@@ -175,6 +175,9 @@ let continuar = true;
 let listaAlumnos = [];
 let criterioOrd = 0;
 let orden = 0;
+const alumnos2020 = "http://localhost:3000/alumnos2020";
+const alumnos2019 = "http://localhost:3000/alumnos2019";
+const alumnos2018 = "http://localhost:3000/alumnos2018";
 
 $(document).ready().on('keyup', function (event) {
   if (event.keyCode === 13) {
@@ -185,37 +188,92 @@ $(document).ready().on('keyup', function (event) {
 // Carga de alumnos mediante lectura de formulario
 
 $("#form-alumno").on("submit", function (event) {
-      event.preventDefault();
+  event.preventDefault();
 
-      let alumno = new Alumno();
-  
-      alumno.nombre = $("#nombre-alumno").val();
-      alumno.apellido = $("#apellido-alumno").val();
-      alumno.notasTP = parseFloat($("#nota-tp1").val()) + parseFloat($("#nota-tp2").val()) + parseFloat($("#nota-tp3").val()) + parseFloat($("#nota-tp4").val()) + parseFloat($("#nota-tp5").val());
-      alumno.aplazosTP = parseInt($("#aplazos-alumno").val());
-      alumno.notaPrimerParcial = parseFloat($("#nota-primer-parcial-alumno").val());
-      alumno.notaSegundoParcial = parseFloat($("#nota-segundo-parcial-alumno").val());
-      alumno.notaExamenFinal = parseFloat($("#nota-examen-final-alumno").val());
-      alumno.asistencias = parseInt($("#asistencias-alumno").val());
+  let alumno = new Alumno();
 
-      alumno.promedioTP = promedioTPs(alumno.notasTP);
+  alumno.nombre = $("#nombre-alumno").val();
+  alumno.apellido = $("#apellido-alumno").val();
+  alumno.notasTP = parseFloat($("#nota-tp1").val()) + parseFloat($("#nota-tp2").val()) + parseFloat($("#nota-tp3").val()) + parseFloat($("#nota-tp4").val()) + parseFloat($("#nota-tp5").val());
+  alumno.aplazosTP = parseInt($("#aplazos-alumno").val());
+  alumno.notaPrimerParcial = parseFloat($("#nota-primer-parcial-alumno").val());
+  alumno.notaSegundoParcial = parseFloat($("#nota-segundo-parcial-alumno").val());
+  alumno.notaExamenFinal = parseFloat($("#nota-examen-final-alumno").val());
+  alumno.asistencias = parseInt($("#asistencias-alumno").val());
 
-      alumno.presentismo = aprobacionAsistencias(cantClases, alumno);
+  alumno.promedioTP = promedioTPs(alumno.notasTP);
 
-      calcularAprobacion(alumno);
-      listaAlumnos.push(alumno);
-      localStorage.setItem("listaDeAlumnos", JSON.stringify(listaAlumnos));
-    });
+  alumno.presentismo = aprobacionAsistencias(cantClases, alumno);
+
+  calcularAprobacion(alumno);
+  listaAlumnos.push(alumno);
+  localStorage.setItem("listaDeAlumnos", JSON.stringify(listaAlumnos));
+});
 
 
-    // Listado de Alumnos
+// Listado de Alumnos
 
-    $("#nombre-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 1); scrollALista();});
-    $("#nombre-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 1, 2); scrollALista();});
-    $("#apellido-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 1); scrollALista();});
-    $("#apellido-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 2, 2); scrollALista();});
-    $("#nota-asc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 1); scrollALista();});
-    $("#nota-desc").on("click", function() {ordenarAlumnos(listaAlumnos, 3, 2); scrollALista();});
+$("#nombre-asc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 1, 1);
+  scrollALista();
+});
+$("#nombre-desc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 1, 2);
+  scrollALista();
+});
+$("#apellido-asc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 2, 1);
+  scrollALista();
+});
+$("#apellido-desc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 2, 2);
+  scrollALista();
+});
+$("#nota-asc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 3, 1);
+  scrollALista();
+});
+$("#nota-desc").on("click", function () {
+  ordenarAlumnos(listaAlumnos, 3, 2);
+  scrollALista();
+});
 
-    // Borrar Listado
-    $("#borrar-lista").click(borrarListaAlumnos);
+// Borrar Listado
+$("#borrar-lista").click(borrarListaAlumnos);
+
+// Listados de Alumnos de Años Anteriores (AJAX)
+
+$("#mostrar-anteriores").click(() => {
+      (
+        $.get(alumnos2020, function (response, status) {
+          if (status === "success") {
+            lista2020 = $("#lista-2020").empty();
+            let listaAlumnos2020 = response;
+            for (const alumno2020 of listaAlumnos2020) {
+              lista2020.append("<li>" + Object.values(alumno2020)[0] + " " + Object.values(alumno2020)[1] + " (" + Object.values(alumno2020)[8] + ")" + "</li>")
+            }
+            lista2020.css("border", "2px solid black");
+          }
+        }),
+        $.get(alumnos2019, function (response, status) {
+          if (status === "success") {
+            lista2019 = $("#lista-2019").empty();
+            let listaAlumnos2019 = response;
+            for (const alumno2019 of listaAlumnos2019) {
+              lista2019.append("<li>" + Object.values(alumno2019)[0] + " " + Object.values(alumno2019)[1] + " (" + Object.values(alumno2019)[8] + ")" + "</li>")
+            }
+            lista2019.css("border", "2px solid black");
+          }
+        }),
+        $.get(alumnos2018, function (response, status) {
+          if (status === "success") {
+            lista2018 = $("#lista-2018").empty();
+            let listaAlumnos2018 = response;
+            for (const alumno2018 of listaAlumnos2018) {
+              lista2018.append("<li>" + Object.values(alumno2018)[0] + " " + Object.values(alumno2018)[1] + " (" + Object.values(alumno2018)[8] + ")" + "</li>")
+            }
+            lista2018.css("border", "2px solid black");
+          }
+        })
+      )});
+      
