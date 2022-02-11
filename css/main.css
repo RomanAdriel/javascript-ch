@@ -110,9 +110,21 @@ textarea :focus::placeholder {
     margin-top: 5px;
 }
 
+
 /* Resultados del Alumno */
 
 #resultado-alumno,
 #listaAlumno {
     display: none;
+}
+
+/* Listados Anteriores */
+
+#listados-anteriores, #botonera-listados {
+    display: flex;
+}
+
+#lista-2020, #lista-2019, #lista-2018 {
+    padding: 15px;
+    margin: 15px;
 }
