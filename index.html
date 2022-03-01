@@ -14,8 +14,10 @@
 </head>
 
 <body>
-    <main>
-        <h1>Simulador de Resultados Finales de Cursada</h1>
+    <header>
+        <div>
+            <h1>Simulador de Resultados Finales de Cursada</h1>
+        </div>
         <p>Este simulador calculará la nota final de cada alumnos de acuerdo a las siguientes condiciones: </p>
         <ul>
             <li>Nota de primer y segundo parcial</li>
@@ -23,15 +25,18 @@
             <li>Porcentaje de asistencias</li>
             <li>Notas de trabajos prácticos</li>
         </ul>
-        <p>Los requisitos mínimios para aprobar la cursada son:</p>
+        <p>Los requisitos mínimos para aprobar la cursada son:</p>
         <ul>
             <li>85% de asistencia a las clases presenciales</li>
             <li>Aprobación del 75% de los trabajos prácticos</li>
             <li>Aprobación de la cursada (parciales) y examen final</li>
         </ul>
+    </header>
+    <main>
     </main>
     <section>
         <div class="container">
+            <h2>Carga de Alumno</h2>
             <form action="" id="form-alumno" class="container">
                 <fieldset class="form-group">
                     <legend>Datos Personales del Alumno</legend>
@@ -45,29 +50,122 @@
                 <fieldset class="form-group">
                     <legend>Notas de TPs</legend>
                     <label for="tp1">Nota TP1</label>
-                    <input type="text" id="nota-tp1" class="form-control contacto__labels" name="tp1" />
+                    <select class="form-control contacto__labels form-select" id="nota-tp1" name="tp1">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="tp2">Nota TP2</label>
-                    <input type="text" id="nota-tp2" class="form-control contacto__labels" name="tp2" />
+                    <select class="form-control contacto__labels form-select" id="nota-tp2" name="tp2">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="tp3">Nota TP3</label>
-                    <input type="text" id="nota-tp3" class="form-control contacto__labels" name="tp3" />
+                    <select class="form-control contacto__labels form-select" id="nota-tp3" name="tp3">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="tp4">Nota TP4</label>
-                    <input type="text" id="nota-tp4" class="form-control contacto__labels" name="tp4" />
+                    <select class="form-control contacto__labels form-select" id="nota-tp4" name="tp4">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="tp5">Nota TP5</label>
-                    <input type="text" id="nota-tp5" class="form-control contacto__labels" name="tp5" />
+                    <select class="form-control contacto__labels form-select" id="nota-tp5" name="tp5">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="aplazos">Aplazos</label>
                     <input type="text" id="aplazos-alumno" class="form-control contacto__labels" name="aplazos" />
                 </fieldset>
                 <fieldset class="form-group">
                     <legend>Notas de Exámenes</legend>
                     <label for="primer-parcial">Nota Primer Parcial</label>
-                    <input type="text" id="nota-primer-parcial-alumno" class="form-control contacto__labels"
-                        name="primer-parcial" />
+                    <select class="form-control contacto__labels form-select" id="nota-primer-parcial-alumno" name="primer-parcial">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="segundo-parcial">Nota Segundo Parcial</label>
-                    <input type="text" id="nota-segundo-parcial-alumno" class="form-control contacto__labels"
-                        name="segundo-parcial" />
+                    <select class="form-control contacto__labels form-select" id="nota-segundo-parcial-alumno" name="segundo-parcial">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                     <label for="examen-final">Nota Examen Final</label>
-                    <input type="text" id="nota-examen-final-alumno" class="form-control contacto__labels"
-                        name="examen-final" />
+                    <select class="form-control contacto__labels form-select" id="nota-examen-final-alumno" name="examen-final">
+                        <option selected>Nota...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
                 </fieldset>
                 <fieldset class="form-group">
                     <legend>Asistencias</legend>

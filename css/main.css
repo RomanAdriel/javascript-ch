@@ -34,7 +34,7 @@ h1 {
     color: #0e1011;
     text-align: center;
     background-color: rgba(229, 235, 229, 0.37);
-    margin-top: 5%;
+    margin-top: 1%;
     font-size: 2rem;
     padding: 5px;
 }
@@ -116,6 +116,8 @@ textarea :focus::placeholder {
 #resultado-alumno,
 #listaAlumno {
     display: none;
+    border: solid 1px black;
+    box-shadow: 5px -5px rgb(111, 228, 164);
 }
 
 /* Listados Anteriores */
@@ -128,3 +130,13 @@ textarea :focus::placeholder {
     padding: 15px;
     margin: 15px;
 }
+
+/* header */
+
+header {
+    height: 50vh;
+    background: url("../assets/hero.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }

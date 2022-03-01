@@ -162,8 +162,15 @@ function mostrarAlumnosOrdenados(alumnos) {
   let lista = $("#alumnosLista");
   lista.empty();
 
-  for (const alumno of alumnos) {
-    lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" + "</li>")
+  if (localStorage.getItem("listaDeAlumnos") === null) {
+    for (const alumno of alumnos) {
+      lista.append("<li>" + Object.values(alumno)[0] + " " + Object.values(alumno)[1] + " (" + Object.values(alumno)[8] + ")" + "</li>")
+    }
+  } else {
+    let listaDeAlumnos = JSON.parse(localStorage.getItem("listaDeAlumnos"))
+    for (const alumno of listaDeAlumnos) {
+      lista.append("<li>" + alumno.nombre + " " + alumno.apellido + " (" + alumno.notaFinal + ")" + "</li>")
+    }
   }
 }
 
@@ -244,36 +251,36 @@ $("#borrar-lista").click(borrarListaAlumnos);
 // Listados de Alumnos de Años Anteriores (AJAX)
 
 $("#mostrar-anteriores").click(() => {
-      (
-        $.get(alumnos2020, function (response, status) {
-          if (status === "success") {
-            lista2020 = $("#lista-2020").empty();
-            let listaAlumnos2020 = response;
-            for (const alumno2020 of listaAlumnos2020) {
-              lista2020.append("<li>" + Object.values(alumno2020)[0] + " " + Object.values(alumno2020)[1] + " (" + Object.values(alumno2020)[8] + ")" + "</li>")
-            }
-            lista2020.css("border", "2px solid black");
-          }
-        }),
-        $.get(alumnos2019, function (response, status) {
-          if (status === "success") {
-            lista2019 = $("#lista-2019").empty();
-            let listaAlumnos2019 = response;
-            for (const alumno2019 of listaAlumnos2019) {
-              lista2019.append("<li>" + Object.values(alumno2019)[0] + " " + Object.values(alumno2019)[1] + " (" + Object.values(alumno2019)[8] + ")" + "</li>")
-            }
-            lista2019.css("border", "2px solid black");
-          }
-        }),
-        $.get(alumnos2018, function (response, status) {
-          if (status === "success") {
-            lista2018 = $("#lista-2018").empty();
-            let listaAlumnos2018 = response;
-            for (const alumno2018 of listaAlumnos2018) {
-              lista2018.append("<li>" + Object.values(alumno2018)[0] + " " + Object.values(alumno2018)[1] + " (" + Object.values(alumno2018)[8] + ")" + "</li>")
-            }
-            lista2018.css("border", "2px solid black");
-          }
-        })
-      )});
-      
+  (
+    $.get(alumnos2020, function (response, status) {
+      if (status === "success") {
+        lista2020 = $("#lista-2020").empty();
+        let listaAlumnos2020 = response;
+        for (const alumno2020 of listaAlumnos2020) {
+          lista2020.append("<li>" + Object.values(alumno2020)[0] + " " + Object.values(alumno2020)[1] + " (" + Object.values(alumno2020)[8] + ")" + "</li>")
+        }
+        lista2020.css("border", "2px solid black");
+      }
+    }),
+    $.get(alumnos2019, function (response, status) {
+      if (status === "success") {
+        lista2019 = $("#lista-2019").empty();
+        let listaAlumnos2019 = response;
+        for (const alumno2019 of listaAlumnos2019) {
+          lista2019.append("<li>" + Object.values(alumno2019)[0] + " " + Object.values(alumno2019)[1] + " (" + Object.values(alumno2019)[8] + ")" + "</li>")
+        }
+        lista2019.css("border", "2px solid black");
+      }
+    }),
+    $.get(alumnos2018, function (response, status) {
+      if (status === "success") {
+        lista2018 = $("#lista-2018").empty();
+        let listaAlumnos2018 = response;
+        for (const alumno2018 of listaAlumnos2018) {
+          lista2018.append("<li>" + Object.values(alumno2018)[0] + " " + Object.values(alumno2018)[1] + " (" + Object.values(alumno2018)[8] + ")" + "</li>")
+        }
+        lista2018.css("border", "2px solid black");
+      }
+    })
+  )
+});
